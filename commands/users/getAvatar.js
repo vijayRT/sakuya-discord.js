@@ -1,0 +1,27 @@
+const commando = require('discord.js-commando');
+
+class getAvatar extends commando.Command {
+    constructor(client) {
+        super(client, {
+            name: 'avatar',
+            group: 'users',
+            memberName: 'avatar',
+            description: 'gives the users avatar',
+            args: [
+                {
+                    key: 'user',
+                    prompt: 'Specify a member',
+                    type: 'user',
+                }
+            ]
+        });
+    }
+
+    async run(message, args) {
+        const { user } = args;
+        message.channel.send(":ok_hand: " + user.avatarURL);
+
+    }
+}
+
+module.exports = getAvatar;
