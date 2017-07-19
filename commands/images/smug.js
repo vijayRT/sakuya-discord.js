@@ -12,7 +12,6 @@ class RollSmug extends commando.Command {
 
     async run(message, args) {
         var smugs = ['http://i.imgur.com/99qkXRs.jpg', 'http://i.imgur.com/5hk7qbn.jpg', 'http://i.imgur.com/rGFrPu9.jpg', 'http://i.imgur.com/Eglo4rE.jpg'];
-        console.log(smugs.length);
         message.channel.send(smugs[Math.floor(Math.random()*smugs.length)]);
     }
 }
