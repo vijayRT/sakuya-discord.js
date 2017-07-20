@@ -19,6 +19,7 @@ class getAvatar extends commando.Command {
 
     async run(message, args) {
         const { user } = args
+        console.log('Avatar of ' + user.username + ' requested by ' + message.author.username)
         message.channel.send(":ok_hand: " + user.avatarURL)
 
     }

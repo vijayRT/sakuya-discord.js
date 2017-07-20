@@ -11,6 +11,7 @@ class MyMmrCommand extends commando.Command {
     }
 
     async run(message, args) {
+        console.log('MyMMR requested by ' + message.author.username)
         var mmr = Math.floor(Math.random()*10000)+1
         if(mmr>5000){
             message.channel.send("Hey " + message.author.username + ", your MMR is " + mmr + " PogChamp")

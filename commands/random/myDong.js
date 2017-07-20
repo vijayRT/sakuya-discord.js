@@ -11,6 +11,7 @@ class MyDong extends commando.Command {
     }
 
     async run(message, args) {
+        console.log('MyDong requested by ' + message.author.username)
         var dong = Math.floor(Math.random()*25)+1
         var vlecx_dong = Math.floor(Math.random()*10)+1
         if(dong<18){

@@ -29,7 +29,7 @@ class getDBinfo extends commando.Command {
 
     async run(message, args) {
         var { option, id } = args
-        console.log('From ' + message.author.username + ', input: ' + option + ' ' + id)
+        console.log('Request from ' + message.author.username + ' - input: ' + option + ' ' + id)
         var getJSON = require('get-json')
         var fs = require('fs')
         var players = fs.readFileSync('players.txt','utf8')
@@ -55,7 +55,7 @@ class getDBinfo extends commando.Command {
 
             fs.writeFileSync('players.txt', JSON.stringify(players_data), function(err){
                 if(err){
-                    console.log('something done fucked up')
+                    console.log('something went wrong')
                 }
             })
         }else if(option == 'mmr'){
@@ -75,6 +75,7 @@ class getDBinfo extends commando.Command {
                     },
                     description: 'Solo MMR: ' + mmr + '\nParty MMR: ' + partymmr + '\nMMR Estimate: ' + estimate
                 }})
+                console.log('Posted mmr for user ' + data['profile']['personaname'] + ' with ID ' + id)
             })
         }else if(option == 'wr'){
             if(id == '0'){
@@ -86,6 +87,7 @@ class getDBinfo extends commando.Command {
                     color: 3447003,
                     description: 'W/L: ' + wl
                 }})
+                console.log('Posted W/L for user with ID ' + id)
 
             })
         }else{
@@ -94,6 +96,7 @@ class getDBinfo extends commando.Command {
                 title: 'Available Options',
                 description: 'mmr: Displays Solo/Party/Estimated MMR\nwr: Displays Wins and Losses\nreg: Register an account'
             }})
+            console.log('Unknown option')
         }
     }
 }

@@ -21,6 +21,7 @@ class getInfo extends commando.Command {
     async run(message, args) {
         var getJSON = require('get-json')
         const { stream } = args
+        console.log('Stream info for ' + stream + ' requested by ' + message.author.username)
         getJSON('https://api.twitch.tv/kraken/streams/' + stream + '?client_id=by2oz0y6sh1mvxqgczq06nigh15lfx', function(err, data){
             if(data['stream']==null){
                 message.channel.send('https://twitch.tv/' + stream + ' is offline')

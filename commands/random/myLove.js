@@ -11,6 +11,7 @@ class myLove extends commando.Command {
     }
 
     async run(message, args) {
+        console.log('MyLove requested by ' + message.author.username)
         var member_amount = message.guild.memberCount
         var members = message.guild.members
         var members_list = members.array()
