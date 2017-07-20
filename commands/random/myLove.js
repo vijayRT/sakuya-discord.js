@@ -14,7 +14,6 @@ class myLove extends commando.Command {
         var member_amount = message.guild.memberCount
         var members = message.guild.members
         var members_list = members.array()
-        var random_member = members.random()
         var i = 0
         while(true){
             if(members_list[i].presence.status == 'offline'){
@@ -29,7 +28,7 @@ class myLove extends commando.Command {
                 break
             }
         }
-        var x = Math.floor(Math.random()*members_list.length) + 1
+        var x = Math.floor(Math.random()*members_list.length) 
         message.channel.send('Hey ' + message.author.username + ' your true love is ' + members_list[x].user.username)
 
     }
