@@ -9,7 +9,6 @@ bot.registry.registerGroup('images', 'images')
 bot.registry.registerGroup('users', 'users')
 bot.registry.registerGroup('streams', 'streams')
 bot.registry.registerGroup('dotabuff', 'dotabuff')
-bot.registry.registerGroup('response', 'response')
 bot.registry.registerDefaults()
 bot.registry.registerCommandsIn(__dirname + "/commands")
 bot.on('ready', () => {

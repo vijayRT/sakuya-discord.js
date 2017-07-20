@@ -12,7 +12,7 @@ class getTopStreams extends commando.Command {
 
     async run(message, args) {
         var getJSON = require('get-json')
-        getJSON('https://api.twitch.tv/kraken/streams?game=Dota%202&client_id=by2oz0y6sh1mvxqgczq06nigh15lfx&language=en&limit=5', function(err, data){
+        getJSON('https://api.twitch.tv/kraken/streams?game=Dota%202&client_id=by2oz0y6sh1mvxqgczq06nigh15lfx&broadcaster_language=en&limit=5', function(err, data){
             var name = data['streams']
             function stream_url(n) {
                 console.log(name[n]['channel']['url'])
