@@ -1,0 +1,4 @@
+#ignore players.txt
+players.txt
+index.js
+commands/streams/streams.js
