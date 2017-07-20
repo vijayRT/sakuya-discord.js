@@ -19,7 +19,7 @@ class getTopStreams extends commando.Command {
             }
             var reply = ''//Top 5 Dota streams:\n'
             for(var i=0; i<5; i++){
-                reply += (i+1) + '. ' + name[i]['channel']['display_name'] + ' - <' + name[0]['channel']['url'] + '>\n\n'
+                reply += (i+1) + '. ' + name[i]['channel']['display_name'] + ' - <' + name[i]['channel']['url'] + '>\n\n'
             }
             message.channel.send({embed: {
                 color: 3447004,
