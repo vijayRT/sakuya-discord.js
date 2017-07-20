@@ -19,7 +19,7 @@ class MyDong extends commando.Command {
             var reaction = 'KappaPride'
         }
 
-        if(message.author.username == 'HERE I AM - PUCK 2016'){
+        if(message.author.username == 'HERE I AM - Puck 2016'){
             message.channel.send('Hey ' + message.author.username + ', your dong hangs ' + vlecx_dong + ' cms low LUUL')
         }else{
             message.channel.send('Hey ' + message.author.username + ', your dong hangs ' + dong + ' cms low ' + reaction)
