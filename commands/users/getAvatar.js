@@ -1,4 +1,4 @@
-const commando = require('discord.js-commando');
+const commando = require('discord.js-commando')
 
 class getAvatar extends commando.Command {
     constructor(client) {
@@ -14,14 +14,14 @@ class getAvatar extends commando.Command {
                     type: 'user',
                 }
             ]
-        });
+        })
     }
 
     async run(message, args) {
-        const { user } = args;
-        message.channel.send(":ok_hand: " + user.avatarURL);
+        const { user } = args
+        message.channel.send(":ok_hand: " + user.avatarURL)
 
     }
 }
 
-module.exports = getAvatar;
+module.exports = getAvatar

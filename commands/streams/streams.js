@@ -1,4 +1,4 @@
-const commando = require('discord.js-commando');
+const commando = require('discord.js-commando')
 
 class getTopStreams extends commando.Command {
     constructor(client) {
@@ -7,7 +7,7 @@ class getTopStreams extends commando.Command {
             group: 'streams',
             memberName: 'streams',
             description: 'Lists top 5 dota streams'
-        });
+        })
     }
 
     async run(message, args) {
@@ -30,4 +30,4 @@ class getTopStreams extends commando.Command {
     }
 }
 
-module.exports = getTopStreams;
+module.exports = getTopStreams

@@ -1,4 +1,4 @@
-const commando = require('discord.js-commando');
+const commando = require('discord.js-commando')
 
 class DiceRollCommand extends commando.Command {
     constructor(client) {
@@ -21,18 +21,18 @@ class DiceRollCommand extends commando.Command {
                     default: 1
                 }
             ]
-        });
+        })
     }
 
     async run(message, args) {
-        const { n, times } = args;
-        var roll = [];
+        const { n, times } = args
+        var roll = []
         for(var i=0; i<times; i=i+1){
             roll.push(Math.floor(Math.random() * n)+1);
         }
         message.channel.send(":game_die: Rolling the dice")
-        setTimeout(function(){message.channel.send(":game_die: You rolled " + roll.join(', '));}, 3000);
+        setTimeout(function(){message.channel.send(":game_die: You rolled " + roll.join(', '))}, 3000)
     }
 }
 
-module.exports = DiceRollCommand;
+module.exports = DiceRollCommand
