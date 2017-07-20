@@ -29,7 +29,7 @@ class getDBinfo extends commando.Command {
 
     async run(message, args) {
         var { option, id } = args
-        console.log('Request from ' + message.author.username + ' - input: ' + option + ' ' + id)
+       // console.log('Yasp request from ' + message.author.username + ' ~input: ' + option + ' ' + id)
         var getJSON = require('get-json')
         var fs = require('fs')
         var players = fs.readFileSync('players.txt','utf8')
@@ -41,10 +41,11 @@ class getDBinfo extends commando.Command {
         }
 
         if(option == 'reg'){
+            console.log('Yasp reg requested by ' + message.author.username + ' with ID ' + id)
             for(var i=0; i<players_data.length; i+=1){
                 if(players_data[i][0] == message.author.id){
                     players_data[i][1] = id
-                    console.log(message.author.username + ' already registered a ID \nOverwriting...')
+                    console.log(message.author.username + ' already registered an ID \nOverwriting...')
                     var Overwritten = true;
                 }
             }
@@ -59,8 +60,10 @@ class getDBinfo extends commando.Command {
                 }
             })
         }else if(option == 'mmr'){
+            console.log('Yasp mmr requested by ' + message.author.username + ' with ID ' + id)
             if(id == '0'){
                 id = player_ID
+                console.log('ID was not provided... ID set to ' + id)
             }
             getJSON('https://api.opendota.com/api/players/' + id, function(err, data){
                 var mmr = data['solo_competitive_rank']
@@ -75,11 +78,13 @@ class getDBinfo extends commando.Command {
                     },
                     description: 'Solo MMR: ' + mmr + '\nParty MMR: ' + partymmr + '\nMMR Estimate: ' + estimate
                 }})
-                console.log('Posted mmr for user ' + data['profile']['personaname'] + ' with ID ' + id)
+                console.log('Posted mmr for ID ' + id)
             })
         }else if(option == 'wr'){
+            console.log('Yasp W/L requested by ' + message.author.username + ' with ID ' + id)
             if(id == '0'){
                 id = player_ID
+                console.log('ID was not provided... ID set to ' + id)
             }
             getJSON('https://api.opendota.com/api/players/' + id + '/wl', function(err, data){
                 var wl = data['win'] + '/' + data['lose']
@@ -87,7 +92,7 @@ class getDBinfo extends commando.Command {
                     color: 3447003,
                     description: 'W/L: ' + wl
                 }})
-                console.log('Posted W/L for user with ID ' + id)
+                console.log('Posted W/L for ID ' + id)
 
             })
         }else{

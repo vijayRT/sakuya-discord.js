@@ -12,7 +12,8 @@ bot.registry.registerGroup('dotabuff', 'dotabuff')
 bot.registry.registerDefaults()
 bot.registry.registerCommandsIn(__dirname + "/commands")
 bot.on('ready', () => {
-    console.log('Sakuya ready')
+    var date = new Date();
+    console.log('~Sakuya ready~ ' + date + '\n')
     bot.user.setGame('with Flandre')
 })
 bot.login('MzM3MjkwNzg0NDE4MTY4ODM0.DFFTzA.WmH7rrxBIlWMsKoZNC9pgAEGYe8')
