@@ -25,7 +25,7 @@ class getInfo extends commando.Command {
             if(data['stream']==null){
                 message.channel.send('https://twitch.tv/' + stream + ' is offline')
             }else{
-                message.channel.send('https://twitch.tv/' + stream + ' is playing ' + data['stream']['game'] + ' with ' + data['stream']['viewers'] + 'viewers')
+                message.channel.send('https://twitch.tv/' + stream + ' is playing ' + data['stream']['game'])
             }
         })
     }

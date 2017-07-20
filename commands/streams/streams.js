@@ -22,6 +22,10 @@ class getTopStreams extends commando.Command {
                 reply += (i+1) + '. ' + name[i]['channel']['display_name'] + ' - <' + name[i]['channel']['url'] + '>\n\n'
             }
             message.channel.send({embed: {
+                author: {
+                    name: client.user.username,
+                    icon_url: client.user.avatarURL
+                },
                 color: 3447004,
                 title: "Top 5 Dota streams: ",
                 description: reply
