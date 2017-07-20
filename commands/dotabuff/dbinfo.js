@@ -89,9 +89,11 @@ class getDBinfo extends commando.Command {
 
             })
         }else{
-            message.channel.send(
-                'unknown option'
-            )
+            message.channel.send({embed: {
+                color: 3447003,
+                title: 'Available Options',
+                description: 'mmr: Displays Solo/Party/Estimated MMR\nwr: Displays Wins and Losses\nreg: Register an account'
+            }})
         }
     }
 }
