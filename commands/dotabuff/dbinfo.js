@@ -98,7 +98,7 @@ class getDBinfo extends commando.Command {
                 if(data['win']!=0 && data['lose']!=0){
                     message.channel.send({ embed: {
                         color: 3447003,
-                        description: 'W/L: ' + wl
+                        description: 'W/L: ' + wl + '  ~  ' + ((Math.floor((data['win']/(data['lose']+data['win']))*10000))/100) + '%'
                     }})
                     console.log('Posted W/L for ID ' + id)
                 }else{
@@ -112,8 +112,7 @@ class getDBinfo extends commando.Command {
         }else{
             message.channel.send({embed: {
                 color: 3447003,
-                title: 'Available Options',
-                description: 'mmr: Displays Solo/Party/Estimated MMR\nwr: Displays Wins and Losses\nreg: Register an account'
+                description: '**Usage**: $yasp <option> <ID>\n\n**Available Options**:\nmmr - default option, displays Solo/Party/Estimated MMR\nwr - displays Wins and Losses\nreg - register an ID to your account'
             }})
             console.log('Unknown option')
         }
