@@ -11,12 +11,18 @@ class MyMmrCommand extends commando.Command {
     }
 
     async run(message, args) {
-        console.log('MyMMR requested by ' + message.author.username)
+        if(message.member.nickname != null){
+            var author = message.member.nickname
+        }else{
+            var author = message.author.username
+        }
+
+        console.log('MyMMR requested by ' + author)
         var mmr = Math.floor(Math.random()*10000)+1
         if(mmr>5000){
-            message.channel.send("Hey " + message.author.username + ", your MMR is " + mmr + " PogChamp")
+            message.channel.send("Hey " + author + ", your MMR is " + mmr + " PogChamp")
         }else{
-            message.channel.send("Hey " + message.author.username + ", your MMR is " + mmr + " LUUL")
+            message.channel.send("Hey " + author + ", your MMR is " + mmr + " LUUL")
         }
     }
 }

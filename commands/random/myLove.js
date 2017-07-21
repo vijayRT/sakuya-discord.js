@@ -30,7 +30,17 @@ class myLove extends commando.Command {
             }
         }
         var x = Math.floor(Math.random()*members_list.length) 
-        message.channel.send('Hey ' + message.author.username + ' your true love is ' + members_list[x].user.username)
+        if(members_list[x].nickname != null){
+            var love = members_list[x].nickname
+        }else{
+            var love = members_list[x].user.username
+        }
+        if(message.member.nickname != null){
+            var author = message.member.nickname
+        }else{
+            var author = message.author.username
+        }
+        message.channel.send('Hey ' + author + ' your true love is ' + love)
 
     }
 }
