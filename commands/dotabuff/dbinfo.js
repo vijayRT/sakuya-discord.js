@@ -43,12 +43,14 @@ class getDBinfo extends commando.Command {
                 if(players_data[i][0] == message.author.id){
                     players_data[i][1] = id
                     console.log(message.author.username + ' already registered an ID \nOverwriting...')
+                    message.channel.send('Your ID has been updated')
                     var Overwritten = true;
                 }
             }
             if(!Overwritten){
                 players_data.push([message.author.id, id])
                 console.log(message.author.username + ' does not have an ID \nAdding entry...')
+                message.channel.send('The ID has been registered to your account')
             }
 
             fs.writeFileSync('players.txt', JSON.stringify(players_data), function(err){
@@ -66,17 +68,25 @@ class getDBinfo extends commando.Command {
                 var mmr = data['solo_competitive_rank']
                 var partymmr = data['competitive_rank']
                 var estimate = data['mmr_estimate']['estimate'] 
+                if(data['profile'] != undefined){
+                    message.channel.send({ embed: {
+                        color: 3447003,
+                        author: { 
+                            name: data['profile']['personaname'],
+                            icon_url: data['profile']['avatarmedium']
+                        },
+                        description: 'Solo MMR: ' + mmr + '\nParty MMR: ' + partymmr + '\nMMR Estimate: ' + estimate
+                    }})
+                    console.log('Posted mmr for ID ' + id)
+                }else{
+                    message.channel.send('Invalid player ID')
+                    console.log('Invalid player ID')
+                }
 
-                message.channel.send({ embed: {
-                    color: 3447003,
-                    author: { 
-                        name: data['profile']['personaname'],
-                        icon_url: data['profile']['avatarmedium']
-                    },
-                    description: 'Solo MMR: ' + mmr + '\nParty MMR: ' + partymmr + '\nMMR Estimate: ' + estimate
-                }})
-                console.log('Posted mmr for ID ' + id)
             })
+            if(id == undefined){
+                message.channel.send('You have not registered an ID to your account yet')
+            }
         }else if(option == 'wr'){
             console.log('Yasp W/L requested by ' + message.author.username + ' with ID ' + id)
             if(id == '0'){
@@ -85,13 +95,20 @@ class getDBinfo extends commando.Command {
             }
             getJSON('https://api.opendota.com/api/players/' + id + '/wl', function(err, data){
                 var wl = data['win'] + '/' + data['lose']
-                message.channel.send({ embed: {
-                    color: 3447003,
-                    description: 'W/L: ' + wl
-                }})
-                console.log('Posted W/L for ID ' + id)
-
+                if(data['win']!=0 && data['lose']!=0){
+                    message.channel.send({ embed: {
+                        color: 3447003,
+                        description: 'W/L: ' + wl
+                    }})
+                    console.log('Posted W/L for ID ' + id)
+                }else{
+                    message.channel.send('Invalid player ID')
+                    console.log('Invalid player ID')
+                }
             })
+            if(id == undefined){
+                message.channel.send('You have not registered an ID to your account yet')
+            }
         }else{
             message.channel.send({embed: {
                 color: 3447003,

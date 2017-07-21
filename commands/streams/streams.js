@@ -18,7 +18,7 @@ class getTopStreams extends commando.Command {
             function stream_url(n) {
                 console.log(name[n]['channel']['url'])
             }
-            var reply = '**Top 5 Dota Streams:** \n'//Top 5 Dota streams:\n'
+            var reply = '**Top 5 Dota Streams** \n'//Top 5 Dota streams:\n'
             for(var i=0; i<5; i++){
                 reply += '\n' + (i+1) + '. ' + name[i]['channel']['display_name'] + ' - <' + name[i]['channel']['url'] + '>\n'
             }
