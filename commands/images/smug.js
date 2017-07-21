@@ -58,7 +58,7 @@ class RollSmug extends commando.Command {
         }else if(option == 'list'){
             message.channel.send({embed: {
                 color: 3447004,
-                title: 'Current list of smugs',
+                title: 'Number of smugs: ' + smugs.length,
                 description: smugs.join(', ')
             }})
         }else if(option == 'rem'){
@@ -81,6 +81,8 @@ class RollSmug extends commando.Command {
                         console.log('something went wrong')
                     }
                 })
+            }else{
+                message.channel.send('You don\'t have permission for this command')
             }
         }else{
             message.channel.send({embed: {
