@@ -33,7 +33,7 @@ class RollSmug extends commando.Command {
             console.log('Smug requested by ' + message.author.username)
             message.channel.send(smugs[Math.floor(Math.random()*smugs.length)])
         }else if(option == 'add' && link != '0'){
-            if(message.author.id == '123219417256558592'){
+            if(message.author.id == '123219417256558592' || message.author.id == '120473568382418945'){
                 console.log('Smug add request by owner')
                 for(var i=0; i<smugs.length; i+=1){
                     if(smugs[i] == link){
@@ -61,11 +61,32 @@ class RollSmug extends commando.Command {
                 title: 'Current list of smugs',
                 description: smugs.join(', ')
             }})
+        }else if(option == 'rem'){
+            if(message.author.id == '123219417256558592' || message.author.id == '120473568382418945'){
+                var Deleted = false
+                for(var i=0; i<smugs.length; i+=1){ 
+                    if(smugs[i] == link){
+                        smugs.splice(i, 1)
+                        Deleted = true
+                        break
+                    }
+                }
+                if(Deleted){
+                    message.channel.send('Image successfully deleted')
+                }else{
+                    message.channel.send('Image could not be found')
+                }
+                fs.writeFileSync('smugs.txt', JSON.stringify(smugs), function(err){
+                    if(err){
+                        console.log('something went wrong')
+                    }
+                })
+            }
         }else{
             message.channel.send({embed: {
                 color: 3447004,
                 title: 'Options',
-                description: 'show: Default option, shows an image from the list\n\nadd: Add an image to the list, only for specified users\n\nlist: Shows the current list of images'
+                description: 'show: Default option, shows an image from the list\n\nadd: Add an image to the list, only for specified users\n\nrem: Remove an image from the list, only for specified users\n\nlist: Shows the current list of images'
             }})
         }
     }
