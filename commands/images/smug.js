@@ -6,14 +6,68 @@ class RollSmug extends commando.Command {
             name: 'smug',
             group: 'images',
             memberName: 'smug',
-            description: 'Shows a smug Smugface'
+            description: 'Shows a smug Smugface',
+            args: [
+                {
+                    key: 'option',
+                    prompt: 'only for owner',
+                    type: 'string',
+                    default: 'show'
+                },
+                {
+                    key: 'link',
+                    prompt: 'link for adding smug',
+                    type: 'string',
+                    default: '0'
+                }
+            ]
         })
     }
 
     async run(message, args) {
-        console.log('Smug requested by ' + message.author.username)
-        var smugs = ['http://i.imgur.com/99qkXRs.jpg', 'http://i.imgur.com/5hk7qbn.jpg', 'http://i.imgur.com/rGFrPu9.jpg', 'http://i.imgur.com/Eglo4rE.jpg']
-        message.channel.send(smugs[Math.floor(Math.random()*smugs.length)])
+        var { option, link } = args
+        var fs = require('fs')
+        var smug_list = fs.readFileSync('smugs.txt','utf8')
+        var smugs = JSON.parse(smug_list)
+        if(option == 'show'){
+            console.log('Smug requested by ' + message.author.username)
+            message.channel.send(smugs[Math.floor(Math.random()*smugs.length)])
+        }else if(option == 'add' && link != '0'){
+            if(message.author.id == '123219417256558592'){
+                console.log('Smug add request by owner')
+                for(var i=0; i<smugs.length; i+=1){
+                    if(smugs[i] == link){
+                        console.log('Smug was already added')
+                        message.channel.send('That image has already been added to the list')
+                        var Added = true;
+                    }
+                } 
+                if(!Added){
+                    console.log('Smug not found in list\nAdding entry...')
+                    smugs.push(link)
+                    message.channel.send('Image added to list')
+                }
+                fs.writeFileSync('smugs.txt', JSON.stringify(smugs), function(err){
+                    if(err){
+                        console.log('something went wrong')
+                    }
+                })
+            }else{
+                message.channel.send('You don\'t have permission for this command')
+            }
+        }else if(option == 'list'){
+            message.channel.send({embed: {
+                color: 3447004,
+                title: 'Current list of smugs',
+                description: smugs.join(', ')
+            }})
+        }else{
+            message.channel.send({embed: {
+                color: 3447004,
+                title: 'Options',
+                description: 'show: Default option, shows an image from the list\n\nadd: Add an image to the list, only for specified users\n\nlist: Shows the current list of images'
+            }})
+        }
     }
 }
 
