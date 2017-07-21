@@ -16,4 +16,4 @@ bot.on('ready', () => {
     console.log('~Sakuya ready~ ' + date + '\n')
     bot.user.setGame('with Flandre')
 })
-bot.login('MzM3MjkwNzg0NDE4MTY4ODM0.DFFTzA.WmH7rrxBIlWMsKoZNC9pgAEGYe8')
+bot.login('MzM3MjkwNzg0NDE4MTY4ODM0.DFLO_g.6KcsZpEP8OV2kiuBXTSTZCcVbMQ')
