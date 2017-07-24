@@ -28,7 +28,7 @@ class Quote extends commando.Command {
         var { option, text } = args
         var fs = require('fs')
         var quotes = JSON.parse(fs.readFileSync('quotes.txt','utf8'))
-        var permission = message.author.id == '123219417256558592' || message.author.id == '186349345719713794'
+        var permission = message.author.id == '123219417256558592' || message.author.id == '186349345719713794' || message.author.id == '77462706893881344'
         var members = message.guild.members
         var members_list = members.array()
         var i = 0
@@ -57,10 +57,13 @@ class Quote extends commando.Command {
             }
 
             message.channel.send('\"' + quotes[quote_n] + '\"' + '  ~  ' + author)
+            console.log('Quote requested by ' + message.author.username)
         }else if(option == 'addquote'){
             if(permission){
                 quotes.push(text)
                 fs.writeFileSync('quotes.txt', JSON.stringify(quotes))
+                message.channel.send('Quote successfully added')
+                console.log('Quote added by ' + message.author.username)
             }else{
                 message.channel.send('You don\'t have permission for this command')
             }
@@ -76,6 +79,7 @@ class Quote extends commando.Command {
                 }
                 if(Deleted){
                     message.channel.send('Quote successfully deleted')
+                    console.log('Quote deleted by ' + message.author.username)
                 }else{
                     message.channel.send('Quote could not be found')
                 }
@@ -83,6 +87,38 @@ class Quote extends commando.Command {
             }
         }else if(option == 'n'){
             message.channel.send('Number of quotes: ' + quotes.length)
+        }else if(option.charAt(0) == '<'){
+            console.log('this')
+            var user = option
+            user = user.slice(2,-1)
+            var members = message.guild.members.array()
+            var found = false
+            if(user.charAt(0) == '!'){
+                user = user.substr(1)
+            }
+            for(var i=0; i<message.guild.memberCount; i+=1){
+                if(members[i].user.id == user){
+                    var quote_n = Math.floor(Math.random()*quotes.length)
+                    if(members[i].nickname != null){
+                        var author = members[i].nickname
+                    }else{
+                        var author = members[i].user.username
+                    }
+                    message.channel.send('\"' + quotes[quote_n] + '\"' + '  ~  ' + author)
+                    found = true
+                    break
+                }
+            }
+            if(found){
+                console.log('Quote requested by ' + message.author.username)
+            }else{
+                console.log('No user with that id found')
+            }
+        }else if(option == 'list'){
+            message.author.sendMessage({embed: {
+                color: 3447004,
+                description: quotes.join('\n\n')
+            }})
         }else{
             message.channel.send('Use $quote remquote <quote> to remove a quote\nUse $quote addquote <quote> to add a quote')
         }

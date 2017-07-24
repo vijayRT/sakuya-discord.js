@@ -109,10 +109,16 @@ class getDBinfo extends commando.Command {
             if(id == undefined){
                 message.channel.send('You have not registered an ID to your account yet')
             }
-        }else{
+        }else if(option == 'link'){
+            if(id == '0'){
+                id = player_ID
+                console.log('ID was not provided... ID set to ' + id)
+            }
+            message.channel.send('https://opendota.com/players/' + id)
+        }else{ 
             message.channel.send({embed: {
                 color: 3447003,
-                description: '**Usage**: $yasp <option> <ID>\n\n**Available Options**:\nmmr - default option, displays Solo/Party/Estimated MMR\nwr - displays Wins and Losses\nreg - register an ID to your account'
+                description: '**Usage**: $yasp <option> <ID>\n\n**Available Options**:\nmmr - default option, displays Solo/Party/Estimated MMR\nwr - displays Wins and Losses\nreg - register an ID to your account\nlink - post link to a profile'
             }})
             console.log('Unknown option')
         }

@@ -12,7 +12,7 @@ class zaWarudo extends commando.Command {
 
     async run(message, args) {
         console.log('Sakuya pic requested by' + message.author.username)
-        var smugs = ['https://my.mixtape.moe/bwzrer.png', 'https://my.mixtape.moe/xzaawu.png', 'http://i.imgur.com/bLfkaVR.jpg', 'https://my.mixtape.moe/lrjkbb.jpg', 'https://my.mixtape.moe/yxvfsw.jpg']
+        var smugs = ['https://my.mixtape.moe/bwzrer.png', 'https://my.mixtape.moe/xzaawu.png', 'http://i.imgur.com/bLfkaVR.jpg', 'https://my.mixtape.moe/lrjkbb.jpg']
         message.channel.send(smugs[Math.floor(Math.random()*smugs.length)])
     }
 }
