@@ -104,6 +104,8 @@ class Quote extends commando.Command {
                     }else{
                         var author = members[i].user.username
                     }
+                    if (message.author.id == 151576609206435840 || user == 151576609206435840 || quotes[quote_n].indexOf("pubes") != -1)
+                        author = "DanielBot"
                     message.channel.send('\"' + quotes[quote_n] + '\"' + '  ~  ' + author)
                     found = true
                     break
